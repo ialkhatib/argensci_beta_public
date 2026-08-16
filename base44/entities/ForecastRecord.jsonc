@@ -1,0 +1,124 @@
+{
+  "name": "ForecastRecord",
+  "type": "object",
+  "properties": {
+    "asset": {
+      "type": "string",
+      "enum": [
+        "silver",
+        "gold"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "pro",
+        "lite"
+      ]
+    },
+    "forecastDays": {
+      "type": "number"
+    },
+    "spotAtForecast": {
+      "type": "number",
+      "description": "Spot price at time of forecast"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modelVersion": {
+      "type": "string",
+      "description": "Semver string identifying model config"
+    },
+    "inputs": {
+      "type": "string",
+      "description": "JSON string: { sampleSize, inputFrequency, structuralPressure, dampedLogDrift, annualisedVol, annualisedDrift }"
+    },
+    "forecastPoints": {
+      "type": "string",
+      "description": "JSON string of the full forecastPoints array [ { date, central, upper1, lower1, upper2, lower2 } ]"
+    },
+    "regime": {
+      "type": "string",
+      "enum": [
+        "trending_up",
+        "trending_down",
+        "ranging",
+        "volatile"
+      ],
+      "description": "Market regime at time of forecast"
+    },
+    "horizonBucket": {
+      "type": "string",
+      "enum": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "description": "short \u2264 45 d, medium \u2264 180 d, long > 180 d"
+    },
+    "overallBias": {
+      "type": "string",
+      "enum": [
+        "bullish",
+        "bearish",
+        "neutral"
+      ]
+    },
+    "userId": {
+      "type": "string",
+      "description": "ID of the user who ran the forecast (null for anonymous lite)"
+    },
+    "scored1": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored3": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored7": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored14": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored30": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored60": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored90": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored180": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored365": {
+      "type": "boolean",
+      "default": false
+    },
+    "scored730": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "asset",
+    "tier",
+    "forecastDays",
+    "spotAtForecast",
+    "generatedAt",
+    "modelVersion",
+    "forecastPoints",
+    "horizonBucket"
+  ]
+}

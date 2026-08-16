@@ -1,0 +1,57 @@
+{
+  "name": "StructuralDriver",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Short name for this structural driver"
+    },
+    "description": {
+      "type": "string",
+      "description": "Why this driver is relevant and how long it is expected to persist"
+    },
+    "asset": {
+      "type": "string",
+      "enum": [
+        "silver",
+        "gold",
+        "both"
+      ],
+      "default": "silver",
+      "description": "Which asset this driver applies to"
+    },
+    "pressureImpact": {
+      "type": "number",
+      "description": "Annual drift adjustment in decimal form. Positive = bullish (e.g. 0.05 = +5%/yr), negative = bearish (e.g. -0.03 = -3%/yr)"
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "bullish",
+        "bearish",
+        "neutral"
+      ],
+      "default": "bullish"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Only active drivers are applied to the forecast"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "When this structural pressure began"
+    },
+    "expectedDecayDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Approximate date when this pressure is expected to fade (optional)"
+    }
+  },
+  "required": [
+    "title",
+    "pressureImpact",
+    "isActive"
+  ]
+}

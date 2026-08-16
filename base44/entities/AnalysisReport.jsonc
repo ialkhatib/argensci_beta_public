@@ -1,0 +1,60 @@
+{
+  "name": "AnalysisReport",
+  "type": "object",
+  "properties": {
+    "asset": {
+      "type": "string",
+      "enum": [
+        "silver",
+        "gold"
+      ],
+      "description": "Which asset this report covers"
+    },
+    "label": {
+      "type": "string",
+      "description": "User-facing name for this saved report"
+    },
+    "forecastDays": {
+      "type": "number",
+      "description": "Number of days in the forecast horizon"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "pro",
+        "lite"
+      ],
+      "description": "Whether this was a Pro (credit-gated) or Lite (free) forecast"
+    },
+    "snapshot": {
+      "type": "string",
+      "description": "Full JSON of the marketIntelligence result, stored as a serialized string"
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the forecast was generated"
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Soft-delete flag \u2014 record is hidden from the user but preserved in the database"
+    }
+  },
+  "required": [
+    "asset",
+    "snapshot",
+    "snapshot_date"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

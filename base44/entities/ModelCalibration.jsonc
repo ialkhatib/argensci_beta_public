@@ -1,0 +1,102 @@
+{
+  "name": "ModelCalibration",
+  "type": "object",
+  "properties": {
+    "asset": {
+      "type": "string",
+      "enum": [
+        "silver",
+        "gold"
+      ]
+    },
+    "horizonBucket": {
+      "type": "string",
+      "enum": [
+        "short",
+        "medium",
+        "long"
+      ]
+    },
+    "regime": {
+      "type": "string",
+      "enum": [
+        "trending_up",
+        "trending_down",
+        "ranging",
+        "volatile",
+        "all"
+      ]
+    },
+    "modelVersion": {
+      "type": "string",
+      "description": "Model version this calibration applies to (e.g. 1.0.0)"
+    },
+    "effectiveFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When these weights took effect"
+    },
+    "windowScores": {
+      "type": "number",
+      "description": "Number of forecast scores used to compute this calibration"
+    },
+    "rollingMAE": {
+      "type": "number"
+    },
+    "rollingMAPE": {
+      "type": "number"
+    },
+    "rollingDirectionalAcc": {
+      "type": "number",
+      "description": "0-1"
+    },
+    "rollingInterval68Coverage": {
+      "type": "number",
+      "description": "0-1, target 0.68"
+    },
+    "rollingInterval95Coverage": {
+      "type": "number",
+      "description": "0-1, target 0.95"
+    },
+    "rollingCRPS": {
+      "type": "number"
+    },
+    "driftBias": {
+      "type": "number",
+      "description": "Systematic over/under-estimation of drift, applied as correction in next forecast"
+    },
+    "volScalar": {
+      "type": "number",
+      "description": "Multiplicative correction to sigma to improve interval coverage, default 1.0"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "champion",
+        "challenger",
+        "retired"
+      ],
+      "default": "champion"
+    },
+    "championSince": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "consecutiveWins": {
+      "type": "number",
+      "default": 0,
+      "description": "Consecutive windows this calibration outperformed champion"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "asset",
+    "horizonBucket",
+    "regime",
+    "modelVersion",
+    "effectiveFrom",
+    "windowScores"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "name": "ForecastScore",
+  "type": "object",
+  "properties": {
+    "forecastRecordId": {
+      "type": "string",
+      "description": "ID of the ForecastRecord this score belongs to"
+    },
+    "asset": {
+      "type": "string",
+      "enum": [
+        "silver",
+        "gold"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "pro",
+        "lite"
+      ]
+    },
+    "horizonBucket": {
+      "type": "string",
+      "enum": [
+        "short",
+        "medium",
+        "long"
+      ]
+    },
+    "regime": {
+      "type": "string",
+      "enum": [
+        "trending_up",
+        "trending_down",
+        "ranging",
+        "volatile"
+      ]
+    },
+    "checkpointDays": {
+      "type": "number",
+      "description": "How many days after forecast this score was taken (30, 90, 180)"
+    },
+    "forecastDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Original forecast timestamp"
+    },
+    "scoredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "spotAtForecast": {
+      "type": "number"
+    },
+    "realizedPrice": {
+      "type": "number",
+      "description": "Actual price at checkpoint"
+    },
+    "predictedCentral": {
+      "type": "number",
+      "description": "Forecast median at checkpoint date"
+    },
+    "predictedUpper1": {
+      "type": "number"
+    },
+    "predictedLower1": {
+      "type": "number"
+    },
+    "predictedUpper2": {
+      "type": "number"
+    },
+    "predictedLower2": {
+      "type": "number"
+    },
+    "mae": {
+      "type": "number",
+      "description": "Mean Absolute Error (|realized - predicted|)"
+    },
+    "mape": {
+      "type": "number",
+      "description": "Mean Absolute Percentage Error (%)"
+    },
+    "directionallyCorrect": {
+      "type": "boolean",
+      "description": "Whether predicted direction matched realized direction"
+    },
+    "inInterval68": {
+      "type": "boolean",
+      "description": "Whether realized price fell within the 68% CI"
+    },
+    "inInterval95": {
+      "type": "boolean",
+      "description": "Whether realized price fell within the 95% CI"
+    },
+    "crps": {
+      "type": "number",
+      "description": "Continuous Ranked Probability Score (lower = better)"
+    },
+    "modelVersion": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "forecastRecordId",
+    "asset",
+    "checkpointDays",
+    "forecastDate",
+    "scoredAt",
+    "spotAtForecast",
+    "realizedPrice",
+    "predictedCentral",
+    "mae",
+    "mape",
+    "directionallyCorrect",
+    "inInterval68",
+    "inInterval95"
+  ]
+}

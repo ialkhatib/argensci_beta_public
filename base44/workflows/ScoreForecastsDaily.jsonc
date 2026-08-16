@@ -1,0 +1,47 @@
+{
+  "description": "Runs daily at 6am to score pending forecast checkpoints against realized prices and update model calibration weights.",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "score_forecasts_daily",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "score_forecasts": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "scoreForecastsJob",
+            "args": {
+              "dry_run": false
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Score pending forecasts",
+            "description": "Scores 30/90/180-day checkpoints and updates calibration"
+          }
+        }
+      }
+    ]
+  },
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "0 6 * * *",
+      "one_time_date": null,
+      "timezone": "America/Toronto",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "name": "Score Forecasts Daily"
+}

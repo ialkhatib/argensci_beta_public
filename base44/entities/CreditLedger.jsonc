@@ -1,0 +1,59 @@
+{
+  "name": "CreditLedger",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "The ID of the user this entry belongs to"
+    },
+    "userEmail": {
+      "type": "string",
+      "description": "Email of the user for easy human-readable reference"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Credit change: negative for spend (e.g. -1), positive for purchase (e.g. +5)"
+    },
+    "balanceBefore": {
+      "type": "number",
+      "description": "Credit balance before this transaction"
+    },
+    "balanceAfter": {
+      "type": "number",
+      "description": "Credit balance after this transaction"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "forecast_spend",
+        "stripe_purchase",
+        "account_deactivation"
+      ],
+      "description": "What caused this credit change. stripe_purchase is legacy — purchasing was removed and nothing writes it any more; the value is kept so historical rows stay valid"
+    },
+    "asset": {
+      "type": "string",
+      "description": "For forecast_spend: which asset was forecast (silver/gold)"
+    },
+    "stripeSessionId": {
+      "type": "string",
+      "description": "Legacy — the Stripe checkout session ID on historical stripe_purchase rows. No longer written"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this transaction occurred"
+    }
+  },
+  "required": [
+    "userId",
+    "amount",
+    "type",
+    "timestamp"
+  ],
+  "rls": {
+    "read": {
+      "data.userId": "{{user.id}}"
+    }
+  }
+}

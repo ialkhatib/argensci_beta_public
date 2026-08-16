@@ -1,0 +1,14 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "credits": {
+      "type": "number",
+      "description": "Pro analysis credits remaining. Each Pro forecast costs 1 credit."
+    },
+    "hasReceivedInitialCredits": {
+      "type": "boolean",
+      "description": "Set to true once the 3 free onboarding credits have been granted, to prevent double-granting."
+    }
+  }
+}
